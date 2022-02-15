@@ -97,6 +97,15 @@ def play(files_urls, device):
     send_dlna_action(device, video_data, "Play")
 
 
+def resume(device):
+    logging.debug("Resuming stream on device: {}".format(
+        json.dumps({
+            "device": device
+        })
+    ))
+    send_dlna_action(device, {"": ""}, "Play")
+
+
 def stop(device):
 
     logging.debug("Stoping device: {}".format(

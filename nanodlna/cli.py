@@ -90,6 +90,19 @@ def find_device(args):
     logging.info("Device selected: {}".format(json.dumps(device)))
     return device
 
+
+def resume(args):
+
+    set_logs(args)
+
+    logging.info("Selecting device to resume")
+    device = find_device(args)
+
+    # Resume through DLNA protocol
+    logging.info("Sending resume command")
+    dlna.resume(device)
+
+
 def pause(args):
 
     set_logs(args)
@@ -204,6 +217,11 @@ def run():
     p_pause.add_argument("-d", "--device", dest="device_url")
     p_pause.add_argument("-q", "--query-device", dest="device_query")
     p_pause.set_defaults(func=pause)
+
+    p_resume = subparsers.add_parser('resume')
+    p_resume.add_argument("-d", "--device", dest="device_url")
+    p_resume.add_argument("-q", "--query-device", dest="device_query")
+    p_resume.set_defaults(func=resume)
 
     p_play = subparsers.add_parser('play')
     p_play.add_argument("-d", "--device", dest="device_url")
