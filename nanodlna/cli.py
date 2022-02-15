@@ -169,7 +169,11 @@ def play(args):
         serve_ip = args.local_host
     else:
         serve_ip = streaming.get_serve_ip(target_ip)
-    files_urls = streaming.start_server(files, serve_ip)
+
+    if args.file_video.startswith('http://') or args.file_video.startswith('https://'):
+        files_urls = files
+    else:
+        files_urls = streaming.start_server(files, serve_ip)
 
     logging.info("Streaming server ready")
 

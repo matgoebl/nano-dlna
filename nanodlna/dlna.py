@@ -108,7 +108,6 @@ def stop(device):
 
 
 def pause(device):
-
     logging.debug("Pausing device: {}".format(
         json.dumps({
             "device": device
