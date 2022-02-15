@@ -58,6 +58,7 @@ def list_devices(args):
     for i, device in enumerate(my_devices, 1):
         print("Device {0}:\n{1}\n\n".format(i, json.dumps(device, indent=4)))
 
+
 def find_device(args):
 
     device = None
@@ -108,7 +109,7 @@ def pause(args):
     set_logs(args)
 
     logging.info("Selecting device to pause")
-    device=find_device(args)
+    device = find_device(args)
 
     # Pause through DLNA protocol
     logging.info("Sending pause command")
@@ -121,7 +122,7 @@ def stop(args):
 
     logging.info("Selecting device to stop")
 
-    device=find_device(args)
+    device = find_device(args)
 
     # Stop through DLNA protocol
     logging.info("Sending stop command")

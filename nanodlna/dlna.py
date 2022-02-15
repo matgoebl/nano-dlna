@@ -107,13 +107,12 @@ def resume(device):
 
 
 def stop(device):
-
-    logging.debug("Stoping device: {}".format(
+    logging.debug("Stopping device: {}".format(
         json.dumps({
             "device": device
         })
     ))
-    send_dlna_action(device, {"":""}, "Stop")
+    send_dlna_action(device, {"": ""}, "Stop")
 
 
 def pause(device):
@@ -122,4 +121,4 @@ def pause(device):
             "device": device
         })
     ))
-    send_dlna_action(device, {"":""}, "Pause")
+    send_dlna_action(device, {"": ""}, "Pause")
