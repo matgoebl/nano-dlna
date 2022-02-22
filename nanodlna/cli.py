@@ -16,24 +16,28 @@ import logging
 
 def set_logs(args):
 
-    log_filename = os.path.join(
-        tempfile.mkdtemp(),
-        "nanodlna-{}.log".format(
-            datetime.datetime.today().strftime("%Y-%m-%d_%H-%M-%S")
-        )
-    )
-
-    logging.basicConfig(
-        filename=log_filename,
-        filemode="w",
-        level=logging.INFO,
-        format="[ %(asctime)s ] %(levelname)s : %(message)s"
-    )
-
     if args.debug_activated:
-        logging.getLogger().setLevel(logging.DEBUG)
+        log_filename = os.path.join(
+            tempfile.mkdtemp(),
+            "nanodlna-{}.log".format(
+                datetime.datetime.today().strftime("%Y-%m-%d_%H-%M-%S")
+            )
+        )
 
-    print("nano-dlna log will be saved here: {}".format(log_filename))
+        logging.basicConfig(
+            filename=log_filename,
+            filemode="w",
+            level=logging.DEBUG,
+            format="[ %(asctime)s ] %(levelname)s : %(message)s"
+        )
+
+        print("nano-dlna log will be saved here: {}".format(log_filename))
+
+    else:
+        logging.basicConfig(
+            level=logging.WARN,
+            format="[ %(asctime)s ] %(levelname)s : %(message)s"
+        )
 
 
 def get_subtitle(file_video):
