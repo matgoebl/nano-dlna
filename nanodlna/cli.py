@@ -240,7 +240,11 @@ def run():
 
     args = parser.parse_args()
 
-    args.func(args)
+    try:
+        args.func(args)
+    except Exception as e:
+        logging.error(e)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

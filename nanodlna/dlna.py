@@ -49,8 +49,8 @@ def send_dlna_action(device, data, action):
         request = urllibreq.Request(device["action_url"], action_data, headers)
         urllibreq.urlopen(request)
         logging.debug("Request sent")
-    except Exception:
-        logging.error("Unknown error sending request: {}".format(
+    except Exception as e:
+        logging.debug("Unknown error sending request: {}".format(
             json.dumps({
                 "url": device["action_url"],
                 "data": action_data.decode("UTF-8"),
@@ -58,6 +58,7 @@ def send_dlna_action(device, data, action):
                 "error": traceback.format_exc()
             })
         ))
+        raise(e)
 
 
 def play(files_urls, device):
